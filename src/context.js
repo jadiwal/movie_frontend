@@ -11,8 +11,9 @@ const AppProvider = ({children}) =>{
     const [isLoading, setIsLoading] = useState(true)
     const [movie, setMovie] = useState()
     const [isError, setIsError] = useState({ show:false, msg:""})
-    const [query, setQuery] = useState('Titanic')
+    const [query, setQuery] = useState('')
     const getMovies = (query)=>{
+        setIsLoading(true)
         fetch(`${constants.url}movies/all-movies?search=${query}`,{
             method:'GET'
         })
@@ -20,12 +21,17 @@ const AppProvider = ({children}) =>{
         .then((result) =>{
             console.log(result)
             if(result.success){
+                setIsLoading(false)
                 let data = result.data
+                setIsError({
+                    show: false,
+                    msg : ''
+                })
                 setMovie(data)
             }else{
                 setIsError({
                     show: true,
-                    msg : "Error"
+                    msg : result.msg
                 })
             }
             
@@ -36,7 +42,12 @@ const AppProvider = ({children}) =>{
     }
 
     useEffect(()=>{
-        getMovies(query)
+       let timeOut= setTimeout(()=>{
+            getMovies(query)
+        },1000)
+
+        return () =>clearTimeout(timeOut)
+        // getMovies(query)
     },[query])
     return <AppContext.Provider value={{isLoading,isError, movie, query, setQuery}}>{children}</AppContext.Provider>
 }
