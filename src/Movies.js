@@ -34,7 +34,7 @@ const Movies = () => {
       {movie && movie.map((item) => (
           
         <div key={item.id} onClick={() => handleCardClick(item)}>
-          <NavLink to={`movie/${item.id}`}>
+          <NavLink to={`/add-movie`}>
             <div className='card'>
               <div className='card-info'>
                 <h2>{item.title}</h2>

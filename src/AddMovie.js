@@ -185,7 +185,7 @@ const AddMovie = () => {
 
           {/* Table Start */}
           
-
+          <MovieTable />
     
     </>
   )

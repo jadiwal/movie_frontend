@@ -6,6 +6,7 @@ import Home from './Home';
 import SingleMovie from './SingleMovie'
 import Error from './Error';
 import AddMovie from './AddMovie';
+import EditMovieForm from './EditMovieForm';
 
 
 function App() {
@@ -16,6 +17,7 @@ function App() {
       <Route path="/movie/:id" element={<SingleMovie />} />
       <Route path="*" element={<Error />} />
       <Route path='/add-movie' element={<AddMovie />}/>
+      <Route path='/edit-movie/:id' element={<EditMovieForm />}/>
     </Routes>
    </>
   );

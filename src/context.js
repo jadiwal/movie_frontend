@@ -44,7 +44,7 @@ const AppProvider = ({children}) =>{
     useEffect(()=>{
        let timeOut= setTimeout(()=>{
             getMovies(query)
-        },1000)
+        },500)
 
         return () =>clearTimeout(timeOut)
         // getMovies(query)
